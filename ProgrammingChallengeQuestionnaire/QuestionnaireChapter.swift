@@ -30,7 +30,22 @@ extension QuestionnaireChapter {
             Question 3
             How do you feel about automated tests?
             """
-        case .evaluation: return "Points evaluation:"
+        case .evaluation:
+            let points = QuestionnairePoints.points
+            var result = ""
+            if points < 7 {
+                result = "0-6 points: Unfortunately, we don’t match!"
+            } else if points < 10 {
+                result = "7-10 points: That looks good!"
+            } else {
+                result = "10 points or more: Excellent!"
+            }
+            
+            return """
+            Points evaluation:
+            \(points) points
+            \(result)
+            """
         }
     }
 }
