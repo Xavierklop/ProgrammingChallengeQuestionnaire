@@ -8,17 +8,97 @@
 
 import UIKit
 
+extension NSAttributedString {
+    var stringRange: NSRange {
+        return NSMakeRange(0, self.length)
+    }
+}
+
+extension QuestionnaireChapter {
+    // here, you inside of QuestionnaireChapter!
+    var attributedText: NSAttributedString {
+        let attributdString = NSMutableAttributedString(string: text)
+        
+        let pargraphStyle = NSMutableParagraphStyle()
+        pargraphStyle.lineSpacing = 10
+        
+        attributdString.addAttribute(NSAttributedStringKey.paragraphStyle, value: pargraphStyle, range: attributdString.stringRange)
+        
+        return attributdString
+    }
+}
+
+extension Page {
+    func questionnaireChapter(attributed: Bool) -> NSAttributedString {
+        if attributed {
+            return questionnaireChapter.attributedText
+        } else {
+            return NSAttributedString(string: questionnaireChapter.text)
+        }
+    }
+}
+
 class PageController: UIViewController {
     
     var page: Page?
     
     // MARK: - User Interface Properties
     
-    let questionLabel = UILabel()
-    let firstChoiceButton = UIButton(type: .system)
-    let secondChoiceButton = UIButton(type: .system)
-    let thirdChoiceButton = UIButton(type: .system)
-    let fourthChoiceButton = UIButton(type: .system)
+    // stored properties(here like questionLabel...) is assigned initial values prior to(before ) the objects initialization!!!! But use lazy var it can defer the initialization of property.
+    // That is to say, because lazy loaded properties are created after object initialzation meaning "self" key word is available to access. So we can access self inside a closure when mark the property as lazily loaded!!!!!
+    lazy var questionLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 0
+        label.attributedText = self.page?.questionnaireChapter(attributed: true)
+        
+        return label
+    }()
+    
+    lazy var firstChoiceButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        
+        let title = self.page?.firstChoice?.title ?? "Start Again"
+        // Selector(a pointer) is a link to the method name that we want to call or a name used to select a method to execute for an object.
+        let selector = self.page?.firstChoice != nil ? #selector(PageController.loadFirstChoice) : #selector(PageController.startAgain)
+        
+        button.setTitle(title, for: .normal)
+        button.addTarget(self, action: selector, for: .touchUpInside)
+        
+        return button
+    }()
+    
+    lazy var secondChoiceButton : UIButton = {
+        let button = UIButton(type: .system)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        
+        button.setTitle(self.page?.secondChoice?.title, for: .normal)
+        button.addTarget(self, action: #selector(PageController.loadSecondChoice), for: .touchUpInside)
+        
+        return button
+    }()
+    
+    lazy var thirdChoiceButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        
+        button.setTitle(self.page?.thirdChoice?.title, for: .normal)
+        button.addTarget(self, action: #selector(PageController.loadThirdChoice), for: .touchUpInside)
+        
+        return button
+    }()
+    
+    lazy var fourthChoiceButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        
+        button.setTitle(self.page?.fourthChoice?.title, for: .normal)
+        button.addTarget(self, action: #selector(PageController.loadFourthChoice), for: .touchUpInside)
+        
+        return button
+    }()
+    
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -31,45 +111,8 @@ class PageController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         view.backgroundColor = .white
         
-        if let page = page {
-            
-            let attributdString = NSMutableAttributedString(string: page.questionnaireChapter.text)
-            
-            let pargraphStyle = NSMutableParagraphStyle()
-            pargraphStyle.lineSpacing = 10
-            
-            attributdString.addAttribute(NSAttributedStringKey.paragraphStyle, value: pargraphStyle, range: NSMakeRange(0, attributdString.length))
-            
-            questionLabel.attributedText = attributdString
-            
-            if let firstChoice = page.firstChoice {
-                firstChoiceButton.setTitle(firstChoice.title, for: .normal)
-                // Selector(a pointer) is a link to the method name that we want to call or a name used to select a method to execute for an object.
-                firstChoiceButton.addTarget(self, action: #selector(PageController.loadFirstChoice), for: .touchUpInside)
-            } else {
-                firstChoiceButton.setTitle("Start Again", for: .normal)
-                firstChoiceButton.addTarget(self, action: #selector(PageController.startAgain), for: .touchUpInside)
-            }
-            
-            if let secondChoice = page.secondChoice {
-                secondChoiceButton.setTitle(secondChoice.title, for: .normal)
-                secondChoiceButton.addTarget(self, action: #selector(PageController.loadSecondChoice), for: .touchUpInside)
-            }
-            
-            if let thirdChoice = page.thirdChoice {
-                thirdChoiceButton.setTitle(thirdChoice.title, for: .normal)
-                thirdChoiceButton.addTarget(self, action: #selector(PageController.loadThirdChoice), for: .touchUpInside)
-            }
-            
-            if let fourthChoice = page.fourthChoice {
-                fourthChoiceButton.setTitle(fourthChoice.title, for: .normal)
-                fourthChoiceButton.addTarget(self, action: #selector(PageController.loadFourthChoice), for: .touchUpInside)
-            }
-            
-        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -81,8 +124,6 @@ class PageController: UIViewController {
         super.viewWillLayoutSubviews()
         
         view.addSubview(questionLabel)
-        questionLabel.numberOfLines = 0
-        questionLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             questionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16.0),
@@ -91,7 +132,6 @@ class PageController: UIViewController {
             ])
         
         view.addSubview(firstChoiceButton)
-        firstChoiceButton.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             firstChoiceButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -99,7 +139,6 @@ class PageController: UIViewController {
             ])
         
         view.addSubview(secondChoiceButton)
-        secondChoiceButton.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             secondChoiceButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -107,7 +146,6 @@ class PageController: UIViewController {
             ])
         
         view.addSubview(thirdChoiceButton)
-        thirdChoiceButton.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             thirdChoiceButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -115,7 +153,6 @@ class PageController: UIViewController {
             ])
         
         view.addSubview(fourthChoiceButton)
-        fourthChoiceButton.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             fourthChoiceButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -128,32 +165,26 @@ class PageController: UIViewController {
     @objc func loadFirstChoice() {
         if let page = page, let firstChoice = page.firstChoice {
             let nextPage = firstChoice.page
-            // Remember we use view controller manage view.
+            // Remember use view controller manage view.
             let pageController = PageController(page: nextPage)
             
-            // test
             if let statusNumber = navigationController?.viewControllers.count {
                 if statusNumber == 2 {
                     QuestionnairePoints.answerPoints.removeAll()
                     QuestionnairePoints.answerPoints.append(firstChoice.points)
                     QuestionnairePoints.points = firstChoice.points
-                    print(QuestionnairePoints.points)
                     
                 } else if statusNumber == 3 {
                     QuestionnairePoints.answerPoints.append(firstChoice.points)
                     let range = QuestionnairePoints.answerPoints.count - 1
                     QuestionnairePoints.answerPoints.removeSubrange(1..<range)
                     QuestionnairePoints.points = QuestionnairePoints.answerPoints[0] + QuestionnairePoints.answerPoints[1]
-                    print("Q2")
-                    print(QuestionnairePoints.points)
                     
                 } else {
                     QuestionnairePoints.answerPoints.append(firstChoice.points)
                     let range = QuestionnairePoints.answerPoints.count - 1
                     QuestionnairePoints.answerPoints.removeSubrange(2..<range)
                     QuestionnairePoints.points = QuestionnairePoints.answerPoints[0] + QuestionnairePoints.answerPoints[1] + QuestionnairePoints.answerPoints[2]
-                    print("Q3")
-                    print(QuestionnairePoints.points)
                     
                 }
             }
@@ -168,29 +199,23 @@ class PageController: UIViewController {
             let nextPage = secondChoice.page
             let pageController = PageController(page: nextPage)
             
-            // test
             if let statusNumber = navigationController?.viewControllers.count {
                 if statusNumber == 2 {
                     QuestionnairePoints.answerPoints.removeAll()
                     QuestionnairePoints.answerPoints.append(secondChoice.points)
                     QuestionnairePoints.points = secondChoice.points
-                    print(QuestionnairePoints.points)
                     
                 } else if statusNumber == 3 {
                     QuestionnairePoints.answerPoints.append(secondChoice.points)
                     let range = QuestionnairePoints.answerPoints.count - 1
                     QuestionnairePoints.answerPoints.removeSubrange(1..<range)
                     QuestionnairePoints.points = QuestionnairePoints.answerPoints[0] + QuestionnairePoints.answerPoints[1]
-                    print("Q2")
-                    print(QuestionnairePoints.points)
                     
                 } else {
                     QuestionnairePoints.answerPoints.append(secondChoice.points)
                     let range = QuestionnairePoints.answerPoints.count - 1
                     QuestionnairePoints.answerPoints.removeSubrange(2..<range)
                     QuestionnairePoints.points = QuestionnairePoints.answerPoints[0] + QuestionnairePoints.answerPoints[1] + QuestionnairePoints.answerPoints[2]
-                    print("Q3")
-                    print(QuestionnairePoints.points)
                     
                 }
             }
@@ -204,29 +229,23 @@ class PageController: UIViewController {
             let nextPage = thirdChoice.page
             let pageController = PageController(page: nextPage)
             
-            // test
             if let statusNumber = navigationController?.viewControllers.count {
                 if statusNumber == 2 {
                     QuestionnairePoints.answerPoints.removeAll()
                     QuestionnairePoints.answerPoints.append(thirdChoice.points)
                     QuestionnairePoints.points = thirdChoice.points
-                    print(QuestionnairePoints.points)
                     
                 } else if statusNumber == 3 {
                     QuestionnairePoints.answerPoints.append(thirdChoice.points)
                     let range = QuestionnairePoints.answerPoints.count - 1
                     QuestionnairePoints.answerPoints.removeSubrange(1..<range)
                     QuestionnairePoints.points = QuestionnairePoints.answerPoints[0] + QuestionnairePoints.answerPoints[1]
-                    print("Q2")
-                    print(QuestionnairePoints.points)
                     
                 } else {
                     QuestionnairePoints.answerPoints.append(thirdChoice.points)
                     let range = QuestionnairePoints.answerPoints.count - 1
                     QuestionnairePoints.answerPoints.removeSubrange(2..<range)
                     QuestionnairePoints.points = QuestionnairePoints.answerPoints[0] + QuestionnairePoints.answerPoints[1] + QuestionnairePoints.answerPoints[2]
-                    print("Q3")
-                    print(QuestionnairePoints.points)
                     
                 }
             }
@@ -240,29 +259,23 @@ class PageController: UIViewController {
             let nextPage = fourthChoice.page
             let pageController = PageController(page: nextPage)
             
-            // test
             if let statusNumber = navigationController?.viewControllers.count {
                 if statusNumber == 2 {
                     QuestionnairePoints.answerPoints.removeAll()
                     QuestionnairePoints.answerPoints.append(fourthChoice.points)
                     QuestionnairePoints.points = fourthChoice.points
-                    print(QuestionnairePoints.points)
                     
                 } else if statusNumber == 3 {
                     QuestionnairePoints.answerPoints.append(fourthChoice.points)
                     let range = QuestionnairePoints.answerPoints.count - 1
                     QuestionnairePoints.answerPoints.removeSubrange(1..<range)
                     QuestionnairePoints.points = QuestionnairePoints.answerPoints[0] + QuestionnairePoints.answerPoints[1]
-                    print("Q2")
-                    print(QuestionnairePoints.points)
                     
                 } else {
                     QuestionnairePoints.answerPoints.append(fourthChoice.points)
                     let range = QuestionnairePoints.answerPoints.count - 1
                     QuestionnairePoints.answerPoints.removeSubrange(2..<range)
                     QuestionnairePoints.points = QuestionnairePoints.answerPoints[0] + QuestionnairePoints.answerPoints[1] + QuestionnairePoints.answerPoints[2]
-                    print("Q3")
-                    print(QuestionnairePoints.points)
                     
                 }
             }
@@ -273,8 +286,6 @@ class PageController: UIViewController {
     }
     
     @objc func startAgain() {
-        
-        print(QuestionnairePoints.points)
         navigationController?.popToRootViewController(animated: true)
         
     }

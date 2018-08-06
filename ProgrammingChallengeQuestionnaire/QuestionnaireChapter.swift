@@ -36,7 +36,7 @@ extension QuestionnaireChapter {
             if points < 7 {
                 result = "0-6 points: Unfortunately, we don’t match!"
             } else if points < 10 {
-                result = "7-10 points: That looks good!"
+                result = "7-9 points: That looks good!"
             } else {
                 result = "10 points or more: Excellent!"
             }
