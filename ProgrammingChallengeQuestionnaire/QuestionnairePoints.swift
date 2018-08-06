@@ -10,6 +10,7 @@ import Foundation
 
 struct QuestionnairePoints {
     static var points = 0
+    static var answerPoints: [Int] = []
 }
 
 

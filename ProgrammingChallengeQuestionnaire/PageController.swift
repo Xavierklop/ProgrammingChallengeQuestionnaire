@@ -134,16 +134,27 @@ class PageController: UIViewController {
             // test
             if let statusNumber = navigationController?.viewControllers.count {
                 if statusNumber == 2 {
+                    QuestionnairePoints.answerPoints.removeAll()
+                    QuestionnairePoints.answerPoints.append(firstChoice.points)
                     QuestionnairePoints.points = firstChoice.points
                     print(QuestionnairePoints.points)
+                    
                 } else if statusNumber == 3 {
-                    QuestionnairePoints.points += firstChoice.points
+                    QuestionnairePoints.answerPoints.append(firstChoice.points)
+                    let range = QuestionnairePoints.answerPoints.count - 1
+                    QuestionnairePoints.answerPoints.removeSubrange(1..<range)
+                    QuestionnairePoints.points = QuestionnairePoints.answerPoints[0] + QuestionnairePoints.answerPoints[1]
+                    print("Q2")
                     print(QuestionnairePoints.points)
-                } else if statusNumber == 4 {
-                    QuestionnairePoints.points += firstChoice.points
-                    print(QuestionnairePoints.points)
+                    
                 } else {
+                    QuestionnairePoints.answerPoints.append(firstChoice.points)
+                    let range = QuestionnairePoints.answerPoints.count - 1
+                    QuestionnairePoints.answerPoints.removeSubrange(2..<range)
+                    QuestionnairePoints.points = QuestionnairePoints.answerPoints[0] + QuestionnairePoints.answerPoints[1] + QuestionnairePoints.answerPoints[2]
+                    print("Q3")
                     print(QuestionnairePoints.points)
+                    
                 }
             }
             
@@ -160,16 +171,27 @@ class PageController: UIViewController {
             // test
             if let statusNumber = navigationController?.viewControllers.count {
                 if statusNumber == 2 {
+                    QuestionnairePoints.answerPoints.removeAll()
+                    QuestionnairePoints.answerPoints.append(secondChoice.points)
                     QuestionnairePoints.points = secondChoice.points
                     print(QuestionnairePoints.points)
+                    
                 } else if statusNumber == 3 {
-                    QuestionnairePoints.points += secondChoice.points
+                    QuestionnairePoints.answerPoints.append(secondChoice.points)
+                    let range = QuestionnairePoints.answerPoints.count - 1
+                    QuestionnairePoints.answerPoints.removeSubrange(1..<range)
+                    QuestionnairePoints.points = QuestionnairePoints.answerPoints[0] + QuestionnairePoints.answerPoints[1]
+                    print("Q2")
                     print(QuestionnairePoints.points)
-                } else if statusNumber == 4 {
-                    QuestionnairePoints.points += secondChoice.points
-                    print(QuestionnairePoints.points)
+                    
                 } else {
+                    QuestionnairePoints.answerPoints.append(secondChoice.points)
+                    let range = QuestionnairePoints.answerPoints.count - 1
+                    QuestionnairePoints.answerPoints.removeSubrange(2..<range)
+                    QuestionnairePoints.points = QuestionnairePoints.answerPoints[0] + QuestionnairePoints.answerPoints[1] + QuestionnairePoints.answerPoints[2]
+                    print("Q3")
                     print(QuestionnairePoints.points)
+                    
                 }
             }
             
@@ -185,16 +207,27 @@ class PageController: UIViewController {
             // test
             if let statusNumber = navigationController?.viewControllers.count {
                 if statusNumber == 2 {
+                    QuestionnairePoints.answerPoints.removeAll()
+                    QuestionnairePoints.answerPoints.append(thirdChoice.points)
                     QuestionnairePoints.points = thirdChoice.points
                     print(QuestionnairePoints.points)
+                    
                 } else if statusNumber == 3 {
-                    QuestionnairePoints.points += thirdChoice.points
+                    QuestionnairePoints.answerPoints.append(thirdChoice.points)
+                    let range = QuestionnairePoints.answerPoints.count - 1
+                    QuestionnairePoints.answerPoints.removeSubrange(1..<range)
+                    QuestionnairePoints.points = QuestionnairePoints.answerPoints[0] + QuestionnairePoints.answerPoints[1]
+                    print("Q2")
                     print(QuestionnairePoints.points)
-                } else if statusNumber == 4 {
-                    QuestionnairePoints.points += thirdChoice.points
-                    print(QuestionnairePoints.points)
+                    
                 } else {
+                    QuestionnairePoints.answerPoints.append(thirdChoice.points)
+                    let range = QuestionnairePoints.answerPoints.count - 1
+                    QuestionnairePoints.answerPoints.removeSubrange(2..<range)
+                    QuestionnairePoints.points = QuestionnairePoints.answerPoints[0] + QuestionnairePoints.answerPoints[1] + QuestionnairePoints.answerPoints[2]
+                    print("Q3")
                     print(QuestionnairePoints.points)
+                    
                 }
             }
             
@@ -210,16 +243,27 @@ class PageController: UIViewController {
             // test
             if let statusNumber = navigationController?.viewControllers.count {
                 if statusNumber == 2 {
+                    QuestionnairePoints.answerPoints.removeAll()
+                    QuestionnairePoints.answerPoints.append(fourthChoice.points)
                     QuestionnairePoints.points = fourthChoice.points
                     print(QuestionnairePoints.points)
+                    
                 } else if statusNumber == 3 {
-                    QuestionnairePoints.points += fourthChoice.points
+                    QuestionnairePoints.answerPoints.append(fourthChoice.points)
+                    let range = QuestionnairePoints.answerPoints.count - 1
+                    QuestionnairePoints.answerPoints.removeSubrange(1..<range)
+                    QuestionnairePoints.points = QuestionnairePoints.answerPoints[0] + QuestionnairePoints.answerPoints[1]
+                    print("Q2")
                     print(QuestionnairePoints.points)
-                } else if statusNumber == 4 {
-                    QuestionnairePoints.points += fourthChoice.points
-                    print(QuestionnairePoints.points)
+                    
                 } else {
+                    QuestionnairePoints.answerPoints.append(fourthChoice.points)
+                    let range = QuestionnairePoints.answerPoints.count - 1
+                    QuestionnairePoints.answerPoints.removeSubrange(2..<range)
+                    QuestionnairePoints.points = QuestionnairePoints.answerPoints[0] + QuestionnairePoints.answerPoints[1] + QuestionnairePoints.answerPoints[2]
+                    print("Q3")
                     print(QuestionnairePoints.points)
+                    
                 }
             }
             
