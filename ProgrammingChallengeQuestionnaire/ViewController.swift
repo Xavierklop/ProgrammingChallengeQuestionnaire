@@ -21,6 +21,7 @@ class ViewController: UIViewController {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
         if segue.identifier == "startQuestionnaire" {
             // Downcasting
             guard let pageController = segue.destination as? PageController else {

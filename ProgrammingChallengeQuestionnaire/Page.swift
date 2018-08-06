@@ -49,7 +49,6 @@ extension Page {
     }
 }
 
-// 用链式算分数，最后用选择1 2 3 4计算分数！！！！
 struct Questionnaire {
     static var questionnaireLinedLists: Page {
         let question1Page = Page(questionnaireChapter: .question1)

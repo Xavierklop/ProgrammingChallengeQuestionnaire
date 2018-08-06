@@ -134,11 +134,17 @@ class PageController: UIViewController {
             // test
             if let statusNumber = navigationController?.viewControllers.count {
                 if statusNumber == 2 {
-                    
+                    QuestionnairePoints.points = firstChoice.points
+                    print(QuestionnairePoints.points)
                 } else if statusNumber == 3 {
-                    
+                    QuestionnairePoints.points += firstChoice.points
+                    print(QuestionnairePoints.points)
+                } else if statusNumber == 4 {
+                    QuestionnairePoints.points += firstChoice.points
+                    print(QuestionnairePoints.points)
+                } else {
+                    print(QuestionnairePoints.points)
                 }
-                
             }
             
             // navigationController is a get property of this PageController, it can push a view controller onto the receiver’s stack and updates the display.
@@ -151,6 +157,22 @@ class PageController: UIViewController {
             let nextPage = secondChoice.page
             let pageController = PageController(page: nextPage)
             
+            // test
+            if let statusNumber = navigationController?.viewControllers.count {
+                if statusNumber == 2 {
+                    QuestionnairePoints.points = secondChoice.points
+                    print(QuestionnairePoints.points)
+                } else if statusNumber == 3 {
+                    QuestionnairePoints.points += secondChoice.points
+                    print(QuestionnairePoints.points)
+                } else if statusNumber == 4 {
+                    QuestionnairePoints.points += secondChoice.points
+                    print(QuestionnairePoints.points)
+                } else {
+                    print(QuestionnairePoints.points)
+                }
+            }
+            
             navigationController?.pushViewController(pageController, animated: true)
         }
     }
@@ -159,6 +181,22 @@ class PageController: UIViewController {
         if let page = page, let thirdChoice = page.thirdChoice {
             let nextPage = thirdChoice.page
             let pageController = PageController(page: nextPage)
+            
+            // test
+            if let statusNumber = navigationController?.viewControllers.count {
+                if statusNumber == 2 {
+                    QuestionnairePoints.points = thirdChoice.points
+                    print(QuestionnairePoints.points)
+                } else if statusNumber == 3 {
+                    QuestionnairePoints.points += thirdChoice.points
+                    print(QuestionnairePoints.points)
+                } else if statusNumber == 4 {
+                    QuestionnairePoints.points += thirdChoice.points
+                    print(QuestionnairePoints.points)
+                } else {
+                    print(QuestionnairePoints.points)
+                }
+            }
             
             navigationController?.pushViewController(pageController, animated: true)
         }
@@ -169,18 +207,30 @@ class PageController: UIViewController {
             let nextPage = fourthChoice.page
             let pageController = PageController(page: nextPage)
             
-            navigationController?.pushViewController(pageController, animated: true)
-            
             // test
-            // 貌似是返回计算分数的关键！！！！
             if let statusNumber = navigationController?.viewControllers.count {
-
+                if statusNumber == 2 {
+                    QuestionnairePoints.points = fourthChoice.points
+                    print(QuestionnairePoints.points)
+                } else if statusNumber == 3 {
+                    QuestionnairePoints.points += fourthChoice.points
+                    print(QuestionnairePoints.points)
+                } else if statusNumber == 4 {
+                    QuestionnairePoints.points += fourthChoice.points
+                    print(QuestionnairePoints.points)
+                } else {
+                    print(QuestionnairePoints.points)
+                }
             }
+            
+            navigationController?.pushViewController(pageController, animated: true)
             
         }
     }
     
     @objc func startAgain() {
+        
+        print(QuestionnairePoints.points)
         navigationController?.popToRootViewController(animated: true)
         
     }

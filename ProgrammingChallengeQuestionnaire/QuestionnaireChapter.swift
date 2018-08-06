@@ -18,9 +18,18 @@ enum QuestionnaireChapter {
 extension QuestionnaireChapter {
     var text: String {
         switch self {
-        case .question1: return "Do you enjoy working in a team?"
-        case .question2: return "How long have you been working with Swift?"
-        case .question3: return "How do you feel about automated tests?"
+        case .question1: return """
+            Question 1
+            Do you enjoy working in a team?
+            """
+        case .question2: return """
+            Question 2
+            How long have you been working with Swift?
+            """
+        case .question3: return """
+            Question 3
+            How do you feel about automated tests?
+            """
         case .evaluation: return "Points evaluation:"
         }
     }
