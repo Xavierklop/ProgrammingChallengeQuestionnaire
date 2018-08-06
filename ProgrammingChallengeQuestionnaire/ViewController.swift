@@ -26,7 +26,7 @@ class ViewController: UIViewController {
             guard let pageController = segue.destination as? PageController else {
                 return }
             
-            // Note: because we in fact don't use PageController's init method assign the property page, so do this in prepare(for segue:, sender:).
+            // Note: because in fact we don't use PageController's init method assign the property page, so do this in prepare(for segue:, sender:).
             pageController.page = Questionnaire.questionnaireLinedLists
         }
     }

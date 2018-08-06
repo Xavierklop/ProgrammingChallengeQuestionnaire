@@ -11,6 +11,8 @@ import UIKit
 class PageController: UIViewController {
     
     var page: Page?
+    // test
+    var points: Int? = 0
     
     // MARK: - User Interface Properties
     
@@ -32,6 +34,8 @@ class PageController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.backgroundColor = .white
+        
         if let page = page {
             
             let attributdString = NSMutableAttributedString(string: page.questionnaireChapter.text)
@@ -45,20 +49,26 @@ class PageController: UIViewController {
             
             if let firstChoice = page.firstChoice {
                 firstChoiceButton.setTitle(firstChoice.title, for: .normal)
+                // Selector(a pointer) is a link to the method name that we want to call or a name used to select a method to execute for an object.
+                firstChoiceButton.addTarget(self, action: #selector(PageController.loadFirstChoice), for: .touchUpInside)
             } else {
                 firstChoiceButton.setTitle("Start Again", for: .normal)
+                firstChoiceButton.addTarget(self, action: #selector(PageController.startAgain), for: .touchUpInside)
             }
             
             if let secondChoice = page.secondChoice {
                 secondChoiceButton.setTitle(secondChoice.title, for: .normal)
+                secondChoiceButton.addTarget(self, action: #selector(PageController.loadSecondChoice), for: .touchUpInside)
             }
             
             if let thirdChoice = page.thirdChoice {
                 thirdChoiceButton.setTitle(thirdChoice.title, for: .normal)
+                thirdChoiceButton.addTarget(self, action: #selector(PageController.loadThirdChoice), for: .touchUpInside)
             }
             
             if let fourthChoice = page.fourthChoice {
                 fourthChoiceButton.setTitle(fourthChoice.title, for: .normal)
+                fourthChoiceButton.addTarget(self, action: #selector(PageController.loadFourthChoice), for: .touchUpInside)
             }
             
         }
@@ -117,7 +127,71 @@ class PageController: UIViewController {
         
     }
     
+    @objc func loadFirstChoice() {
+        if let page = page, let firstChoice = page.firstChoice {
+            let nextPage = firstChoice.page
+            // Remember we use view controller manage view.
+            let pageController = PageController(page: nextPage)
+            
+            // test
+            if let statusNumber = navigationController?.viewControllers.count {
+                if statusNumber == 2 {
+                    var stringPoints = self.points!.description
+                    points = Int(stringPoints)! + firstChoice.points
+                    print(points)
+                } else if statusNumber == 3 {
+                    
+                }
+                
+            }
+            
+            // navigationController is a get property of this PageController, it can push a view controller onto the receiver’s stack and updates the display.
+            navigationController?.pushViewController(pageController, animated: true)
+            
+        }
+    }
+    
+    @objc func loadSecondChoice() {
+        if let page = page, let secondChoice = page.secondChoice {
+            let nextPage = secondChoice.page
+            let pageController = PageController(page: nextPage)
+            
+            navigationController?.pushViewController(pageController, animated: true)
+        }
+    }
+    
+    @objc func loadThirdChoice() {
+        if let page = page, let thirdChoice = page.thirdChoice {
+            let nextPage = thirdChoice.page
+            let pageController = PageController(page: nextPage)
+            
+            navigationController?.pushViewController(pageController, animated: true)
+        }
+    }
+    
+    @objc func loadFourthChoice() {
+        if let page = page, let fourthChoice = page.fourthChoice {
+            let nextPage = fourthChoice.page
+            let pageController = PageController(page: nextPage)
+            
+            navigationController?.pushViewController(pageController, animated: true)
+            
+            // test
+            // 貌似是返回计算分数的关键！！！！
+            if let statusNumber = navigationController?.viewControllers.count {
 
+            }
+            
+        }
+    }
+    
+    @objc func startAgain() {
+        navigationController?.popToRootViewController(animated: true)
+        
+    }
+    
+    
+    
 }
 
 
