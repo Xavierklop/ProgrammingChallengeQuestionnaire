@@ -11,8 +11,6 @@ import UIKit
 class PageController: UIViewController {
     
     var page: Page?
-    // test
-    var points: Int? = 0
     
     // MARK: - User Interface Properties
     
@@ -136,9 +134,7 @@ class PageController: UIViewController {
             // test
             if let statusNumber = navigationController?.viewControllers.count {
                 if statusNumber == 2 {
-                    var stringPoints = self.points!.description
-                    points = Int(stringPoints)! + firstChoice.points
-                    print(points)
+                    
                 } else if statusNumber == 3 {
                     
                 }
@@ -147,7 +143,6 @@ class PageController: UIViewController {
             
             // navigationController is a get property of this PageController, it can push a view controller onto the receiver’s stack and updates the display.
             navigationController?.pushViewController(pageController, animated: true)
-            
         }
     }
     
