@@ -17,6 +17,9 @@
 		7541428321166BD600613316 /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7541428221166BD600613316 /* Page.swift */; };
 		754142872117602B00613316 /* PageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 754142862117602B00613316 /* PageController.swift */; };
 		7541428F2118818B00613316 /* QuestionnairePoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7541428E2118818B00613316 /* QuestionnairePoints.swift */; };
+		754142992119A4B000613316 /* NetworkDemoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 754142982119A4B000613316 /* NetworkDemoData.swift */; };
+		7541429B2119A53200613316 /* HUMAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7541429A2119A53100613316 /* HUMAPIClient.swift */; };
+		7541429D2119A8A800613316 /* HUMError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7541429C2119A8A800613316 /* HUMError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +47,9 @@
 		7541428221166BD600613316 /* Page.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page.swift; sourceTree = "<group>"; };
 		754142862117602B00613316 /* PageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageController.swift; sourceTree = "<group>"; };
 		7541428E2118818B00613316 /* QuestionnairePoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionnairePoints.swift; sourceTree = "<group>"; };
+		754142982119A4B000613316 /* NetworkDemoData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDemoData.swift; sourceTree = "<group>"; };
+		7541429A2119A53100613316 /* HUMAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HUMAPIClient.swift; sourceTree = "<group>"; };
+		7541429C2119A8A800613316 /* HUMError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HUMError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +97,9 @@
 				7541428221166BD600613316 /* Page.swift */,
 				7541428E2118818B00613316 /* QuestionnairePoints.swift */,
 				754142862117602B00613316 /* PageController.swift */,
+				754142982119A4B000613316 /* NetworkDemoData.swift */,
+				7541429A2119A53100613316 /* HUMAPIClient.swift */,
+				7541429C2119A8A800613316 /* HUMError.swift */,
 				754142642115DA9C00613316 /* Main.storyboard */,
 				754142672115DAA000613316 /* Assets.xcassets */,
 				754142692115DAA000613316 /* LaunchScreen.storyboard */,
@@ -209,12 +218,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7541429B2119A53200613316 /* HUMAPIClient.swift in Sources */,
 				7541428F2118818B00613316 /* QuestionnairePoints.swift in Sources */,
+				754142992119A4B000613316 /* NetworkDemoData.swift in Sources */,
 				754142632115DA9C00613316 /* ViewController.swift in Sources */,
 				754142612115DA9C00613316 /* AppDelegate.swift in Sources */,
 				7541428321166BD600613316 /* Page.swift in Sources */,
 				754142812116688B00613316 /* QuestionnaireChapter.swift in Sources */,
 				754142872117602B00613316 /* PageController.swift in Sources */,
+				7541429D2119A8A800613316 /* HUMError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
