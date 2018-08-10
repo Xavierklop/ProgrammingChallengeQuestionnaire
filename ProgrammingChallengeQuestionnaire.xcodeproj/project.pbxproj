@@ -70,6 +70,68 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		751F528D211D108700877EA8 /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				754142602115DA9C00613316 /* AppDelegate.swift */,
+			);
+			path = AppDelegate;
+			sourceTree = "<group>";
+		};
+		751F528E211D109F00877EA8 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				754142802116688B00613316 /* QuestionnaireChapter.swift */,
+				7541428221166BD600613316 /* Page.swift */,
+				7541428E2118818B00613316 /* QuestionnairePoints.swift */,
+				754142982119A4B000613316 /* NetworkDemoData.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		751F528F211D111500877EA8 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				7541429A2119A53100613316 /* HUMAPIClient.swift */,
+				7541429C2119A8A800613316 /* HUMError.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		751F5290211D116100877EA8 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				754142622115DA9C00613316 /* ViewController.swift */,
+				754142862117602B00613316 /* PageController.swift */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		751F5291211D119600877EA8 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				754142642115DA9C00613316 /* Main.storyboard */,
+				754142692115DAA000613316 /* LaunchScreen.storyboard */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		751F5292211D11DA00877EA8 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				7541426C2115DAA000613316 /* Info.plist */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		751F5293211D121800877EA8 /* Rescoures */ = {
+			isa = PBXGroup;
+			children = (
+				754142672115DAA000613316 /* Assets.xcassets */,
+			);
+			path = Rescoures;
+			sourceTree = "<group>";
+		};
 		754142542115DA9C00613316 = {
 			isa = PBXGroup;
 			children = (
@@ -91,19 +153,13 @@
 		7541425F2115DA9C00613316 /* ProgrammingChallengeQuestionnaire */ = {
 			isa = PBXGroup;
 			children = (
-				754142602115DA9C00613316 /* AppDelegate.swift */,
-				754142622115DA9C00613316 /* ViewController.swift */,
-				754142802116688B00613316 /* QuestionnaireChapter.swift */,
-				7541428221166BD600613316 /* Page.swift */,
-				7541428E2118818B00613316 /* QuestionnairePoints.swift */,
-				754142862117602B00613316 /* PageController.swift */,
-				754142982119A4B000613316 /* NetworkDemoData.swift */,
-				7541429A2119A53100613316 /* HUMAPIClient.swift */,
-				7541429C2119A8A800613316 /* HUMError.swift */,
-				754142642115DA9C00613316 /* Main.storyboard */,
-				754142672115DAA000613316 /* Assets.xcassets */,
-				754142692115DAA000613316 /* LaunchScreen.storyboard */,
-				7541426C2115DAA000613316 /* Info.plist */,
+				751F5293211D121800877EA8 /* Rescoures */,
+				751F528D211D108700877EA8 /* AppDelegate */,
+				751F528E211D109F00877EA8 /* Models */,
+				751F528F211D111500877EA8 /* Networking */,
+				751F5290211D116100877EA8 /* View Controllers */,
+				751F5291211D119600877EA8 /* Views */,
+				751F5292211D11DA00877EA8 /* Supporting Files */,
 			);
 			path = ProgrammingChallengeQuestionnaire;
 			sourceTree = "<group>";
@@ -388,7 +444,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SVU6D9G33T;
-				INFOPLIST_FILE = ProgrammingChallengeQuestionnaire/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/ProgrammingChallengeQuestionnaire/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -406,7 +462,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SVU6D9G33T;
-				INFOPLIST_FILE = ProgrammingChallengeQuestionnaire/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/ProgrammingChallengeQuestionnaire/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
