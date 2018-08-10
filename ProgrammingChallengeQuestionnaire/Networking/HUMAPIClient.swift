@@ -11,8 +11,6 @@ import Foundation
 // A demo HUMAPIClient try to "download" someStringData json from server but which NOT implemented in viewController!
 class HUMAPIClient {
     
-    var downloadData: [String] = []
-    
     fileprivate let demoHUMApiKey = "123455678909876544356771231212121212121"
     
     lazy var baseUrl: URL = {
@@ -30,17 +28,9 @@ class HUMAPIClient {
         self.init(configuration: .default)
     }
     
-    func getString(string: String) -> [String] {
-        let data = [string]
-        return data
+    func getDataFromServer(completion: ((Bool) -> ())?) {
+        
     }
-    
-    func getSomeStringData(string: String, completion: ((Bool) -> ())?) {
-        downloadData = getString(string: string)
-    }
-    
-    
-    
     
     
     

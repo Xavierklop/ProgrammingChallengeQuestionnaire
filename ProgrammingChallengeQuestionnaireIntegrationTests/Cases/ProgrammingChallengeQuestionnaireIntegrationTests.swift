@@ -24,8 +24,7 @@ class ProgrammingChallengeQuestionnaireIntegrationTests: XCTestCase {
         let expectation = self.expectation(description: "Expected get data from server to fails")
         
         // when
-        
-        
+                
         
         // then
         
