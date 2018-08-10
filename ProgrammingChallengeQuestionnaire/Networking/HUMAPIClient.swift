@@ -32,47 +32,45 @@ class HUMAPIClient {
         
     }
     
-    
-    
-//    func getSomeStringData(someInfo: String, completionHandler completion: @escaping (NetworkDemoData?, Error?) -> Void) {
-//
-//        guard let url = URL(string: someInfo, relativeTo: baseUrl) else {
-//            completion(nil, HUMError.someError)
-//            return
-//        }
-//
-//        let request = URLRequest(url: url)
-//
-//        let task = session.dataTask(with: request) { data, response, error in
-//            // Since the download takes place in the background thread, it needs to be returned to the main thread, so that the update UI is guaranteed to happen on the main thread (although I don't know how to use "mock" to write a unit test, the update UI is not implemented in the viewController).
-//            DispatchQueue.main.async {
-//                if let data = data {
-//                    guard let httpResponse = response as? HTTPURLResponse else {
-//                        completion(nil, HUMError.someError)
-//                        return
-//                    }
-//                    if httpResponse.statusCode == 200 {
-//                        do {
-//                            let networkDemoData = try self.decoder.decode(NetworkDemoData.self, from: data)
-//                            completion(networkDemoData, nil)
-//                        } catch let error {
-//                            completion(nil, error)
-//                        }
-//                    } else {
-//                        completion(nil, HUMError.someError)
-//                    }
-//
-//
-//                } else if let error = error {
-//                    completion(nil, error)
-//                }
-//            }
-//
-//        }
-//
-//        task.resume()
-//
-//    }
+    func getSomeStringData(someInfo: String, completionHandler completion: @escaping (NetworkDemoData?, Error?) -> Void) {
+
+        guard let url = URL(string: someInfo, relativeTo: baseUrl) else {
+            completion(nil, HUMError.someError)
+            return
+        }
+
+        let request = URLRequest(url: url)
+
+        let task = session.dataTask(with: request) { data, response, error in
+            // Since the download takes place in the background thread, it needs to be returned to the main thread, so that the update UI is guaranteed to happen on the main thread (although I don't know how to use "mock" to write a unit test, the update UI is not implemented in the viewController).
+            DispatchQueue.main.async {
+                if let data = data {
+                    guard let httpResponse = response as? HTTPURLResponse else {
+                        completion(nil, HUMError.someError)
+                        return
+                    }
+                    if httpResponse.statusCode == 200 {
+                        do {
+                            let networkDemoData = try self.decoder.decode(NetworkDemoData.self, from: data)
+                            completion(networkDemoData, nil)
+                        } catch let error {
+                            completion(nil, error)
+                        }
+                    } else {
+                        completion(nil, HUMError.someError)
+                    }
+
+
+                } else if let error = error {
+                    completion(nil, error)
+                }
+            }
+
+        }
+
+        task.resume()
+
+    }
     
 }
 

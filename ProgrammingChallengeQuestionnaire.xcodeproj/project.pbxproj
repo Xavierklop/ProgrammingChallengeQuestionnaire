@@ -22,7 +22,6 @@
 		7541429D2119A8A800613316 /* HUMError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7541429C2119A8A800613316 /* HUMError.swift */; };
 		7594BF4B211D16B00081221F /* ProgrammingChallengeQuestionnaireIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7594BF4A211D16B00081221F /* ProgrammingChallengeQuestionnaireIntegrationTests.swift */; };
 		7594BF59211D19210081221F /* MockHUMServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7594BF58211D19210081221F /* MockHUMServer.swift */; };
-		7594BF61211D2A7C0081221F /* HUMServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7594BF60211D2A7C0081221F /* HUMServer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,7 +63,6 @@
 		7594BF4A211D16B00081221F /* ProgrammingChallengeQuestionnaireIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgrammingChallengeQuestionnaireIntegrationTests.swift; sourceTree = "<group>"; };
 		7594BF4C211D16B00081221F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7594BF58211D19210081221F /* MockHUMServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockHUMServer.swift; sourceTree = "<group>"; };
-		7594BF60211D2A7C0081221F /* HUMServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HUMServer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,7 +114,6 @@
 			children = (
 				7541429A2119A53100613316 /* HUMAPIClient.swift */,
 				7541429C2119A8A800613316 /* HUMError.swift */,
-				7594BF60211D2A7C0081221F /* HUMServer.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -396,7 +393,6 @@
 				754142812116688B00613316 /* QuestionnaireChapter.swift in Sources */,
 				754142872117602B00613316 /* PageController.swift in Sources */,
 				7541429D2119A8A800613316 /* HUMError.swift in Sources */,
-				7594BF61211D2A7C0081221F /* HUMServer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
