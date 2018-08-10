@@ -8,7 +8,7 @@
 
 import Foundation
 
-// A demo data struct used for network.
+// A demo data struct used for decode.
 struct NetworkDemoData: Codable {
     let someStringData: String
 }
